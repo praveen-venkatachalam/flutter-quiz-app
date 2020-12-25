@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
       routes: {
         "/homePage": (context) => MyCategoryPage(
               title: 'My Quiz',
-            )
+            ),
+        "/readMode": (context) => MyReadModePage()
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

@@ -66,7 +66,14 @@ class _MyCategoryPage extends State<MyCategoryPage> {
                         ],
                       ),
                     ),
-                    onTap: () => print('Click to ${category.name}'),
+                    onTap: () {
+                      context.read(questionCategoryState).state = category;
+                      if (category.ID != -1) //if not equal 'exam'
+                      {
+                        context.read(isTestMode).state = false;
+                        Navigator.pushNamed(context, "/readMode");
+                      }
+                    },
                   );
                 }).toList(),
               );
