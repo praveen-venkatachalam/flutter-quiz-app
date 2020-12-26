@@ -26,6 +26,7 @@ class QuestionBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
+      carouselController: carouselController,
       items: questions
           .asMap()
           .entries

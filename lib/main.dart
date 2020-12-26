@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_edmt_quiz_app/screens/home_page.dart';
+import 'package:flutter_edmt_quiz_app/screens/read_mode.dart';
 import 'package:flutter_riverpod/all.dart';
 
 void main() {

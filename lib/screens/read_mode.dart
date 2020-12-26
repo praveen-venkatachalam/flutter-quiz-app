@@ -32,10 +32,11 @@ class _MyReadModePageState extends State<MyReadModePage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       prefs = await SharedPreferences.getInstance();
       indexPage = await prefs.getInt(
-          '${context.read(questionCategoryState).state.name}_${context.read(questionCategoryState).state.ID}');
-      Future.delayed(Duration(milliseconds: 500)).then((value) =>
-          buttonCarouselController
-              .animateToPage(indexPage == null ? 0 : indexPage));
+              '${context.read(questionCategoryState).state.name}_${context.read(questionCategoryState).state.ID}') ??
+          0;
+      print('Save index page: ${indexPage}');
+      Future.delayed(Duration(milliseconds: 500))
+          .then((value) => buttonCarouselController.animateToPage(indexPage));
     });
   }
 
@@ -61,30 +62,39 @@ class _MyReadModePageState extends State<MyReadModePage> {
                     child: Text('${snapshot.error}'),
                   );
                 else if (snapshot.hasData) {
-                  if(snapshot.data.length > 0){
-                    return Container(margin: const EdgeInsets.all(4.0),
-                    child: Card(
-                      elevation: 8,
-                      child: Container(
-                        padding: const EdgeInsets.only(left: 4,right: 4,bottom: 4,top: 10),
-                        child: SingleChildScrollView(
-                          child: Column(children:[
-                            QuestionBody(context: context,
-                            carouselController: buttonCarouselController,
-                            questions: snapshot.data,
-                            userAnswers: userAnswers,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                TextButton(onPressed: () => showAnswer(context), child: Text('Show Answer'))
-                              ],
-                            )
-                          ]),
+                  if (snapshot.data.length > 0) {
+                    return Container(
+                      margin: const EdgeInsets.all(4.0),
+                      child: Card(
+                        elevation: 8,
+                        child: Container(
+                          padding: const EdgeInsets.only(
+                              left: 4, right: 4, bottom: 4, top: 10),
+                          child: SingleChildScrollView(
+                            child: Column(children: [
+                              QuestionBody(
+                                context: context,
+                                carouselController: buttonCarouselController,
+                                questions: snapshot.data,
+                                userAnswers: userAnswers,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextButton(
+                                      onPressed: () => showAnswer(context),
+                                      child: Text('Show Answer'))
+                                ],
+                              )
+                            ]),
+                          ),
                         ),
                       ),
-                    ),)
-                  }
-
+                    );
+                  } else
+                    return Center(
+                      child: Text('Category don\'t have any question'),
+                    );
                 } else
                   return Center(
                     child: CircularProgressIndicator(),
@@ -125,7 +135,7 @@ class _MyReadModePageState extends State<MyReadModePage> {
             ));
   }
 
-  Future<List<Question>> getQuestionByCategory(int id) async{
+  Future<List<Question>> getQuestionByCategory(int id) async {
     var db = await copyDB();
     var result = await QuestionProvider().getQuestionByCategoryId(db, id);
     return result;

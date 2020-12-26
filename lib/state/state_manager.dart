@@ -9,5 +9,5 @@ final questionCategoryState = StateProvider((ref) => new Category());
 final isTestMode = StateProvider((ref) => false);
 final currentReadPage = StateProvider((ref) => 0);
 final userAnswerSelected = StateProvider((ref) => new UserAnswer());
-final isEnableShowAnswer = StateProvider((ref) => true);
+final isEnableShowAnswer = StateProvider((ref) => false);
 final userListAnswer = StateProvider((ref) => List<UserAnswer>());

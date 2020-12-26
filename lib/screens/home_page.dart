@@ -58,7 +58,7 @@ class _MyCategoryPage extends State<MyCategoryPage> {
                             style: TextStyle(
                                 color: category.ID == -1
                                     ? Colors.white
-                                    : Colors.white,
+                                    : Colors.black,
                                 fontWeight: FontWeight.bold),
                             maxLines: 1,
                             textAlign: TextAlign.center,
