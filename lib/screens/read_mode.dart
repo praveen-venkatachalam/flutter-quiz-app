@@ -34,7 +34,7 @@ class _MyReadModePageState extends State<MyReadModePage> {
       indexPage = await prefs.getInt(
               '${context.read(questionCategoryState).state.name}_${context.read(questionCategoryState).state.ID}') ??
           0;
-      print('Save index page: ${indexPage}');
+      print('Save index page: $indexPage');
       Future.delayed(Duration(milliseconds: 500))
           .then((value) => buttonCarouselController.animateToPage(indexPage));
     });

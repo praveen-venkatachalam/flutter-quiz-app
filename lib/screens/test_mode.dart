@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,61 @@ class _MyTestModePageState extends State<MyTestModePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (_) => new AlertDialog(
+                                    title: Text('Finish'),
+                                    content: Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.8,
+                                      child: GridView.count(
+                                        crossAxisCount: 2,
+                                        childAspectRatio: 1.0,
+                                        padding: const EdgeInsets.all(4.0),
+                                        mainAxisSpacing: 4.0,
+                                        crossAxisSpacing: 4.0,
+                                        children: context
+                                            .read(userListAnswer)
+                                            .state
+                                            .asMap()
+                                            .entries
+                                            .map((category) {
+                                          return GestureDetector(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: AutoSizeText(
+                                                'No ${e.key + 1}: ${e.value.answered == null || e.value.answered.isEmpty ? '' : e.value.answered}',
+                                                style: TextStyle(
+                                                    fontWeight: (e.value
+                                                                    .answered !=
+                                                                null &&
+                                                            !e.value.answered
+                                                                .isEmpty)
+                                                        ? FontWeight.bold
+                                                        : FontWeight.normal),
+                                                maxLines: 1,
+                                              ),
+                                            ),
+                                            onTap: () {
+                                              Navigator.of(context).pop();
+                                              carouselController
+                                                  .animateToPage(e.key);
+                                            },
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text('Close')),
+                                    ],
+                                  ));
+                        },
                         child: Column(
                           children: [Icon(Icons.note), Text('Answer Sheet')],
                         )),
