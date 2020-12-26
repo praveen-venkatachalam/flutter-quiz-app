@@ -84,21 +84,21 @@ class QuestionProvider {
   }
 
   Future<List<Question>> getQuestions(Database db) async {
-    var maps = await db.query(
-      tableQuestionName,
-      columns: [
-        columnQuestionId,
-        columnQuestionText,
-        columnQuestionImage,
-        columnQuestionAnswerA,
-        columnQuestionAnswerB,
-        columnQuestionAnswerC,
-        columnQuestionAnswerD,
-        columnQuestionCorrectAnswer,
-        columnQuestionIsImage,
-        columnQuestionCategoryId
-      ],
-    );
+    var maps = await db.query(tableQuestionName,
+        columns: [
+          columnQuestionId,
+          columnQuestionText,
+          columnQuestionImage,
+          columnQuestionAnswerA,
+          columnQuestionAnswerB,
+          columnQuestionAnswerC,
+          columnQuestionAnswerD,
+          columnQuestionCorrectAnswer,
+          columnQuestionIsImage,
+          columnQuestionCategoryId
+        ],
+        limit: 30,
+        orderBy: "Random()");
     if (maps.length > 0)
       return maps.map((question) => Question.fromMap(question)).toList();
     return null;

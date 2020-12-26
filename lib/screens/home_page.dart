@@ -72,6 +72,9 @@ class _MyCategoryPage extends State<MyCategoryPage> {
                       {
                         context.read(isTestMode).state = false;
                         Navigator.pushNamed(context, "/readMode");
+                      } else {
+                        context.read(isTestMode).state = true;
+                        Navigator.pushNamed(context, "/testMode");
                       }
                     },
                   );
