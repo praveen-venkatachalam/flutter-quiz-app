@@ -2,7 +2,12 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_edmt_quiz_app/database/category_provider.dart';
+import 'package:flutter_edmt_quiz_app/database/db_helper.dart';
+import 'package:flutter_edmt_quiz_app/database/question_provider.dart';
+import 'package:flutter_edmt_quiz_app/model/user_answer_model.dart';
 import 'package:flutter_edmt_quiz_app/state/state_manager.dart';
+import 'package:flutter_edmt_quiz_app/utils/utils.dart';
+import 'package:flutter_edmt_quiz_app/widgets/question_body.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,6 +23,7 @@ class _MyReadModePageState extends State<MyReadModePage> {
   SharedPreferences prefs;
   int indexPage = 0;
   CarouselController buttonCarouselController = CarouselController();
+  List<UserAnswer> userAnswers = new List<UserAnswer>();
 
   @override
   void initState() {
@@ -48,7 +54,7 @@ class _MyReadModePageState extends State<MyReadModePage> {
           body: Container(
             color: Colors.white,
             child: FutureBuilder(
-              future: getQuestionByCategory<List<Question>>(questionModule.ID),
+              future: getQuestionByCategory(questionModule.ID),
               builder: (context, snapshot) {
                 if (snapshot.hasError)
                   return Center(
@@ -62,13 +68,23 @@ class _MyReadModePageState extends State<MyReadModePage> {
                       child: Container(
                         padding: const EdgeInsets.only(left: 4,right: 4,bottom: 4,top: 10),
                         child: SingleChildScrollView(
-                          child: column(children:[
-                            //yesterday
+                          child: Column(children:[
+                            QuestionBody(context: context,
+                            carouselController: buttonCarouselController,
+                            questions: snapshot.data,
+                            userAnswers: userAnswers,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                TextButton(onPressed: () => showAnswer(context), child: Text('Show Answer'))
+                              ],
+                            )
                           ]),
                         ),
                       ),
                     ),)
                   }
+
                 } else
                   return Center(
                     child: CircularProgressIndicator(),
@@ -107,5 +123,11 @@ class _MyReadModePageState extends State<MyReadModePage> {
                     child: Text('Yes'))
               ],
             ));
+  }
+
+  Future<List<Question>> getQuestionByCategory(int id) async{
+    var db = await copyDB();
+    var result = await QuestionProvider().getQuestionByCategoryId(db, id);
+    return result;
   }
 }
