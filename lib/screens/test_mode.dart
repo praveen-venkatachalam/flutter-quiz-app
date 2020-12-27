@@ -58,7 +58,7 @@ class _MyTestModePageState extends State<MyTestModePage> {
                                             .state
                                             .asMap()
                                             .entries
-                                            .map((category) {
+                                            .map((e) {
                                           return GestureDetector(
                                             child: Padding(
                                               padding:
@@ -69,8 +69,8 @@ class _MyTestModePageState extends State<MyTestModePage> {
                                                     fontWeight: (e.value
                                                                     .answered !=
                                                                 null &&
-                                                            !e.value.answered
-                                                                .isEmpty)
+                                                            e.value.answered
+                                                                .isNotEmpty)
                                                         ? FontWeight.bold
                                                         : FontWeight.normal),
                                                 maxLines: 1,
