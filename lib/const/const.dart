@@ -1,3 +1,5 @@
+final limitTime = 10; //seconds
+
 final db_name = "EDMTQuiz2020.db";
 
 final columnMainCategoryId = "ID";

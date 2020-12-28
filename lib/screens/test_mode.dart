@@ -2,10 +2,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_edmt_quiz_app/const/const.dart';
 import 'package:flutter_edmt_quiz_app/database/db_helper.dart';
 import 'package:flutter_edmt_quiz_app/database/question_provider.dart';
 import 'package:flutter_edmt_quiz_app/model/user_answer_model.dart';
 import 'package:flutter_edmt_quiz_app/state/state_manager.dart';
+import 'package:flutter_edmt_quiz_app/widgets/count_down.dart';
 import 'package:flutter_edmt_quiz_app/widgets/question_body.dart';
 import 'package:flutter_riverpod/all.dart';
 
@@ -17,9 +19,67 @@ class MyTestModePage extends StatefulWidget {
   State<StatefulWidget> createState() => _MyTestModePageState();
 }
 
-class _MyTestModePageState extends State<MyTestModePage> {
+class _MyTestModePageState extends State<MyTestModePage>
+    with SingleTickerProviderStateMixin {
   CarouselController carouselController = new CarouselController();
   List<UserAnswer> userAnswers = new List<UserAnswer>();
+  AnimationController _controller;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    if (_controller.isAnimating || _controller.isCompleted)
+      _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+        vsync: this, duration: Duration(seconds: limitTime));
+    _controller.addListener(() {
+      if (_controller.isCompleted) {
+        Navigator.pop(context);
+        //Navigator.pushNamed(context, "/testResult");
+      }
+    });
+    _controller.forward(); //start
+  }
+
+  void showCloseExamDialog() {
+    showDialog(
+        context: context,
+        builder: (_) => new AlertDialog(
+              title: Text('Finish'),
+              content: Text('Do you want to finish exam?'),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('No')),
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.pop(context);
+                    },
+                    child: Text('Yes'))
+              ],
+            ));
+  }
+
+  Future<List<Question>> getQuestion() async {
+    var db = await copyDB();
+    var result = await QuestionProvider().getQuestions(db);
+    userAnswers.clear();
+    result.forEach((element) {
+      userAnswers.add(new UserAnswer(
+          questionId: element.questionId, answered: '', isCorrect: false));
+    });
+    context.read(userListAnswer).state = userAnswers;
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +157,10 @@ class _MyTestModePageState extends State<MyTestModePage> {
                         child: Column(
                           children: [Icon(Icons.note), Text('Answer Sheet')],
                         )),
-                    Text('Demo time'),
+                    Countdown(
+                      animation: StepTween(begin: limitTime, end: 0)
+                          .animate(_controller),
+                    ),
                     TextButton(
                         onPressed: () {},
                         child: Column(
@@ -146,39 +209,5 @@ class _MyTestModePageState extends State<MyTestModePage> {
           showCloseExamDialog();
           return true;
         });
-  }
-
-  void showCloseExamDialog() {
-    showDialog(
-        context: context,
-        builder: (_) => new AlertDialog(
-              title: Text('Finish'),
-              content: Text('Do you want to finish exam?'),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('No')),
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      Navigator.pop(context);
-                    },
-                    child: Text('Yes'))
-              ],
-            ));
-  }
-
-  Future<List<Question>> getQuestion() async {
-    var db = await copyDB();
-    var result = await QuestionProvider().getQuestions(db);
-    userAnswers.clear();
-    result.forEach((element) {
-      userAnswers.add(new UserAnswer(
-          questionId: element.questionId, answered: '', isCorrect: false));
-    });
-    context.read(userListAnswer).state = userAnswers;
-    return result;
   }
 }
