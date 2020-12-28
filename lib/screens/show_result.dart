@@ -1,16 +1,9 @@
-import 'dart:ffi';
-
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_edmt_quiz_app/const/const.dart';
 import 'package:flutter_edmt_quiz_app/database/db_helper.dart';
 import 'package:flutter_edmt_quiz_app/database/question_provider.dart';
-import 'package:flutter_edmt_quiz_app/model/user_answer_model.dart';
 import 'package:flutter_edmt_quiz_app/state/state_manager.dart';
-import 'package:flutter_edmt_quiz_app/widgets/count_down.dart';
-import 'package:flutter_edmt_quiz_app/widgets/question_body.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -153,7 +146,11 @@ class _MyResultPageState extends State<MyResultPage> {
                         ),
                       ),
                       onTap: () async {
-                        print('Learn question click');
+                        var questionNeedView =
+                            await getQuestionById(question.value.questionId);
+                        context.read(userViewQuestionState).state =
+                            questionNeedView;
+                        Navigator.pushNamed(context, "/questionDetail");
                       },
                     );
                   }).toList(),
@@ -169,4 +166,9 @@ class _MyResultPageState extends State<MyResultPage> {
   }
 
   void showCloseDialog() {}
+
+  Future<Question> getQuestionById(questionId) async {
+    var db = await copyDB();
+    return await QuestionProvider().getQuestionById(db, questionId);
+  }
 }
