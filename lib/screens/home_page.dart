@@ -47,7 +47,8 @@ class _MyCategoryPage extends State<MyCategoryPage> {
                   return GestureDetector(
                     child: Card(
                       elevation: 2,
-                      color: category.ID == -1 ? Colors.green : Colors.white,
+                      color:
+                          category.ID == -1 ? Colors.green : Color(0xffe9eefa),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -58,7 +59,7 @@ class _MyCategoryPage extends State<MyCategoryPage> {
                             style: TextStyle(
                                 color: category.ID == -1
                                     ? Colors.white
-                                    : Colors.black,
+                                    : Colors.green,
                                 fontWeight: FontWeight.bold),
                             maxLines: 1,
                             textAlign: TextAlign.center,

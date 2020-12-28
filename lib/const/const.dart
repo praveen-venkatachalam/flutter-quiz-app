@@ -1,4 +1,4 @@
-final limitTime = 10; //seconds
+final limitTime = 70; //seconds
 
 final db_name = "EDMTQuiz2020.db";
 
