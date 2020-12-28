@@ -41,7 +41,7 @@ class _MyTestModePageState extends State<MyTestModePage>
     _controller.addListener(() {
       if (_controller.isCompleted) {
         Navigator.pop(context);
-        //Navigator.pushNamed(context, "/testResult");
+        Navigator.pushNamed(context, "/showResult");
       }
     });
     _controller.forward(); //start
@@ -162,7 +162,9 @@ class _MyTestModePageState extends State<MyTestModePage>
                           .animate(_controller),
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showFinishDialog();
+                        },
                         child: Column(
                           children: [Icon(Icons.done), Text('Submit')],
                         )),
@@ -209,5 +211,28 @@ class _MyTestModePageState extends State<MyTestModePage>
           showCloseExamDialog();
           return true;
         });
+  }
+
+  void showFinishDialog() {
+    showDialog(
+        context: context,
+        builder: (_) => new AlertDialog(
+              title: Text('Finish'),
+              content: Text('Do you really want to submit exam?'),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('No')),
+                TextButton(
+                    onPressed: () {
+                      context.read(userListAnswer).state = userAnswers;
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushReplacementNamed("/showResult");
+                    },
+                    child: Text('Yes'))
+              ],
+            ));
   }
 }

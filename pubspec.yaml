@@ -33,6 +33,7 @@ dependencies:
   carousel_slider: any
   shared_preferences: any
   auto_size_text: any
+  percent_indicator: any
 
 dev_dependencies:
   flutter_test:
@@ -77,3 +78,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+

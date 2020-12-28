@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_edmt_quiz_app/screens/home_page.dart';
 import 'package:flutter_edmt_quiz_app/screens/read_mode.dart';
+import 'package:flutter_edmt_quiz_app/screens/show_result.dart';
 import 'package:flutter_edmt_quiz_app/screens/test_mode.dart';
 import 'package:flutter_riverpod/all.dart';
 
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
               title: 'My Quiz',
             ),
         "/readMode": (context) => MyReadModePage(),
-        "/testMode": (context) => MyTestModePage()
+        "/testMode": (context) => MyTestModePage(),
+        "/showResult": (context) => MyResultPage()
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
