@@ -40,8 +40,8 @@ class _MyTestModePageState extends State<MyTestModePage>
         vsync: this, duration: Duration(seconds: limitTime));
     _controller.addListener(() {
       if (_controller.isCompleted) {
-        Navigator.pop(context);
-        Navigator.pushNamed(context, "/showResult");
+        Navigator.of(context).pop();
+        Navigator.of(context).pushNamed("/showResult");
       }
     });
     _controller.forward(); //start

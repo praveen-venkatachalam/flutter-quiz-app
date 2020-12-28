@@ -68,12 +68,12 @@ class _MyResultPageState extends State<MyResultPage> {
                       Row(
                         children: [
                           Container(
-                            width: 20,
+                            width: 18,
                             height: 20,
                             color: Colors.green,
                           ),
                           SizedBox(
-                            width: 10,
+                            width: 1,
                           ),
                           Text('Correct Answer')
                         ],
@@ -81,12 +81,12 @@ class _MyResultPageState extends State<MyResultPage> {
                       Row(
                         children: [
                           Container(
-                            width: 20,
+                            width: 18,
                             height: 20,
                             color: Colors.red,
                           ),
                           SizedBox(
-                            width: 10,
+                            width: 1,
                           ),
                           Text('Wrong Answer')
                         ],
@@ -94,12 +94,12 @@ class _MyResultPageState extends State<MyResultPage> {
                       Row(
                         children: [
                           Container(
-                            width: 20,
+                            width: 18,
                             height: 20,
                             color: Colors.white,
                           ),
                           SizedBox(
-                            width: 10,
+                            width: 1,
                           ),
                           Text('Not Answer')
                         ],
