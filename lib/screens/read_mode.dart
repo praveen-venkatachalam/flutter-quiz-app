@@ -46,6 +46,7 @@ class _MyReadModePageState extends State<MyReadModePage> {
     return WillPopScope(
         child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.green,
             title: Text(questionModule.name),
             leading: GestureDetector(
               onTap: () => showCloseDialog(questionModule),

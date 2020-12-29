@@ -86,6 +86,7 @@ class _MyTestModePageState extends State<MyTestModePage>
     return WillPopScope(
         child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.green,
             title: Text('Quiz exam'),
             leading: GestureDetector(
               onTap: () => showCloseExamDialog(),

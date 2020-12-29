@@ -18,8 +18,10 @@ class _MyCategoryPage extends State<MyCategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0xfff4f6fd),
         appBar: AppBar(
           title: Text(widget.title),
+          backgroundColor: Colors.green,
         ),
         body: FutureBuilder<List<Category>>(
           future: getCategories(),
@@ -39,27 +41,31 @@ class _MyCategoryPage extends State<MyCategoryPage> {
               snapshot.data.add(category);
               return GridView.count(
                 crossAxisCount: 2,
-                childAspectRatio: 1.0,
-                padding: const EdgeInsets.all(4.0),
-                mainAxisSpacing: 4.0,
-                crossAxisSpacing: 4.0,
+                childAspectRatio: 2,
+                padding: const EdgeInsets.all(2.0),
+                mainAxisSpacing: 3.0,
+                crossAxisSpacing: 2.0,
                 children: snapshot.data.map((category) {
                   return GestureDetector(
                     child: Card(
-                      elevation: 2,
-                      color:
-                          category.ID == -1 ? Colors.green : Color(0xffe9eefa),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      elevation: 1.5,
+                      color: category.ID == -1 ? Colors.green : Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          IconButton(
+                            icon: Icon(
+                              Icons.book_outlined,
+                              color: Colors.green.withOpacity(0.5),
+                            ),
+                          ),
                           Center(
                               child: AutoSizeText(
                             '${category.name}',
                             style: TextStyle(
                                 color: category.ID == -1
                                     ? Colors.white
-                                    : Colors.green,
+                                    : Colors.blueGrey,
                                 fontWeight: FontWeight.bold),
                             maxLines: 1,
                             textAlign: TextAlign.center,

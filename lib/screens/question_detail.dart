@@ -21,6 +21,7 @@ class _MyQuestionDetailPageState extends State<MyQuestionDetailPage> {
       return WillPopScope(
           child: Scaffold(
             appBar: AppBar(
+              backgroundColor: Colors.green,
               title: Text('${currentQuestion.questionId}(in database)'),
               leading: GestureDetector(
                 onTap: () => Navigator.pop(context),
@@ -58,7 +59,7 @@ class _MyQuestionDetailPageState extends State<MyQuestionDetailPage> {
                               '${currentQuestion.answerA}',
                               style: TextStyle(
                                   color: currentQuestion.correctAnswer == 'A'
-                                      ? Colors.red
+                                      ? Colors.green
                                       : Colors.grey),
                             ),
                             leading: Radio(
@@ -73,7 +74,7 @@ class _MyQuestionDetailPageState extends State<MyQuestionDetailPage> {
                               '${currentQuestion.answerB}',
                               style: TextStyle(
                                   color: currentQuestion.correctAnswer == 'B'
-                                      ? Colors.red
+                                      ? Colors.green
                                       : Colors.grey),
                             ),
                             leading: Radio(
@@ -88,7 +89,7 @@ class _MyQuestionDetailPageState extends State<MyQuestionDetailPage> {
                               '${currentQuestion.answerC}',
                               style: TextStyle(
                                   color: currentQuestion.correctAnswer == 'C'
-                                      ? Colors.red
+                                      ? Colors.green
                                       : Colors.grey),
                             ),
                             leading: Radio(
@@ -103,7 +104,7 @@ class _MyQuestionDetailPageState extends State<MyQuestionDetailPage> {
                               '${currentQuestion.answerD}',
                               style: TextStyle(
                                   color: currentQuestion.correctAnswer == 'D'
-                                      ? Colors.red
+                                      ? Colors.green
                                       : Colors.grey),
                             ),
                             leading: Radio(

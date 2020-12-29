@@ -16,15 +16,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Flutter',
       routes: {
         "/homePage": (context) => MyCategoryPage(
-              title: 'My Quiz',
+              title: 'KPR Learn',
             ),
         "/readMode": (context) => MyReadModePage(),
         "/testMode": (context) => MyTestModePage(),
         "/showResult": (context) => MyResultPage(),
-        "/questionDetail": (context) => MyQuestionDetailPage()
+        "/questionDetail": (context) => MyQuestionDetailPage(),
+        "/subjectDetail": (context) => MyQuestionDetailPage()
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -64,13 +65,13 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 30),
+            padding: EdgeInsets.only(left: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
                   child: Text(
-                    "\n\nAce your",
+                    "Ace your",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 40,
@@ -80,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Container(
                   child: Text(
-                    "JEE and NEET",
+                    "Engineering",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 40,
@@ -133,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         fit: BoxFit.cover)),
               ),
               Positioned(
-                bottom: 70,
+                bottom: 90,
                 left: 0,
                 right: 0,
                 child: Center(

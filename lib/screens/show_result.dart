@@ -21,6 +21,7 @@ class _MyResultPageState extends State<MyResultPage> {
     return WillPopScope(
         child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.green,
             title: Text('Quiz exam'),
             leading: GestureDetector(
               onTap: () => Navigator.pop(context),
@@ -101,7 +102,7 @@ class _MyResultPageState extends State<MyResultPage> {
                           SizedBox(
                             width: 1,
                           ),
-                          Text('Not Answer')
+                          Text('No Answer')
                         ],
                       ),
                     ],
