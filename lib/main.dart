@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_edmt_quiz_app/screens/calender.dart';
 import 'package:flutter_edmt_quiz_app/screens/home_page.dart';
 import 'package:flutter_edmt_quiz_app/screens/question_detail.dart';
 import 'package:flutter_edmt_quiz_app/screens/read_mode.dart';
 import 'package:flutter_edmt_quiz_app/screens/show_result.dart';
+import 'package:flutter_edmt_quiz_app/screens/subject.dart';
 import 'package:flutter_edmt_quiz_app/screens/test_mode.dart';
 import 'package:flutter_riverpod/all.dart';
 
@@ -25,7 +27,8 @@ class MyApp extends StatelessWidget {
         "/testMode": (context) => MyTestModePage(),
         "/showResult": (context) => MyResultPage(),
         "/questionDetail": (context) => MyQuestionDetailPage(),
-        "/subjectDetail": (context) => MyQuestionDetailPage()
+        "/subjectDetail": (context) => subjectPage(),
+        "/calenderPage": (context) => HomeCalendarPage(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -166,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void openMainPage() {
-    Navigator.pushNamed(context, "/homePage");
+    Navigator.pushNamed(context, "/subjectDetail");
   }
   //Widget build(BuildContext context) {
   //return Scaffold(

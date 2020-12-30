@@ -87,7 +87,7 @@ class _MyTestModePageState extends State<MyTestModePage>
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.green,
-            title: Text('Quiz exam'),
+            title: Text('Module Test'),
             leading: GestureDetector(
               onTap: () => showCloseExamDialog(),
               child: Icon(Icons.arrow_back),
