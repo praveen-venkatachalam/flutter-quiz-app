@@ -22,7 +22,7 @@ class _MyResultPageState extends State<MyResultPage> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.green,
-            title: Text('Quiz exam'),
+            title: Text('Module Test'),
             leading: GestureDetector(
               onTap: () => Navigator.pop(context),
               child: Icon(Icons.arrow_back),

@@ -37,7 +37,7 @@ class _MyCategoryPage extends State<MyCategoryPage> {
               //only 'Exam' category help user make a quiz
               Category category = new Category();
               category.ID = -1;
-              category.name = "Exam";
+              category.name = "Module Test";
               snapshot.data.add(category);
               return GridView.count(
                 crossAxisCount: 2,

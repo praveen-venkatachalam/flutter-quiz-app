@@ -14,6 +14,7 @@ class _subjectPageState extends State<subjectPage> {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Text(
@@ -26,16 +27,16 @@ class _subjectPageState extends State<subjectPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Padding(
               padding: EdgeInsets.symmetric(vertical: 1.0, horizontal: 2.0),
               child: Column(
                 children: [
                   Container(
+                    margin:
+                        EdgeInsets.only(left: 0, top: 0, right: 0, bottom: 0),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: InkWell(
                         onTap: () {
                           openCalenderPage();
@@ -46,20 +47,23 @@ class _subjectPageState extends State<subjectPage> {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 4.0,
+                  ),
                   Container(
                     margin:
-                        EdgeInsets.only(left: 0, top: 40, right: 0, bottom: 0),
+                        EdgeInsets.only(left: 0, top: 0, right: 0, bottom: 20),
                     child: Column(
                       children: [
                         Container(
                           margin: EdgeInsets.only(
-                              left: 0, top: 0, right: 0, bottom: 40),
+                              left: 0, top: 10, right: 0, bottom: 30),
                           child: Text(
                             'SUBJECTS',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black54,
+                              color: Colors.green,
                             ),
                           ),
                         ),
@@ -69,8 +73,8 @@ class _subjectPageState extends State<subjectPage> {
                             children: [
                               Container(
                                 // changing from 200 to 150 as to look better
-                                height: 100.0,
-                                width: 100.0,
+                                height: 108.0,
+                                width: 108.0,
                                 child: ClipOval(
                                   child: InkWell(
                                     onTap: () {
@@ -85,8 +89,8 @@ class _subjectPageState extends State<subjectPage> {
                               ),
                               Container(
                                 // changing from 200 to 150 as to look better
-                                height: 100.0,
-                                width: 100.0,
+                                height: 108.0,
+                                width: 108.0,
                                 child: ClipOval(
                                   child: Image(
                                     fit: BoxFit.cover,
@@ -96,8 +100,8 @@ class _subjectPageState extends State<subjectPage> {
                               ),
                               Container(
                                 // changing from 200 to 150 as to look better
-                                height: 100.0,
-                                width: 100.0,
+                                height: 108.0,
+                                width: 108.0,
                                 child: ClipOval(
                                   child: Image(
                                     fit: BoxFit.cover,
