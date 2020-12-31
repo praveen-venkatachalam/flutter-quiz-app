@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.green[600],
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,9 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     "Ace your",
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 40,
+                        fontSize: 50,
                         fontWeight: FontWeight.w900,
-                        height: 1),
+                        height: 1.2),
                   ),
                 ),
                 Container(
@@ -87,9 +87,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     "Engineering",
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 40,
+                        fontSize: 50,
+                        letterSpacing: 1.0,
                         fontWeight: FontWeight.w500,
-                        height: 1),
+                        height: 1.2),
                   ),
                 ),
                 Container(
@@ -97,31 +98,31 @@ class _MyHomePageState extends State<MyHomePage> {
                     "Dream!..",
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 40,
+                        fontSize: 50,
                         fontWeight: FontWeight.w900,
-                        height: 1),
+                        height: 1.2),
                   ),
                 ),
-                Container(
-                  child: Text(
-                    "",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w500,
-                        height: 1),
-                  ),
-                ),
-                Container(
-                  child: Text(
-                    "",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w900,
-                        height: 1),
-                  ),
-                ),
+                // Container(
+                //   child: Text(
+                //     "",
+                //     style: TextStyle(
+                //         color: Colors.white,
+                //         fontSize: 40,
+                //         fontWeight: FontWeight.w500,
+                //         height: 1),
+                //   ),
+                // ),
+                // Container(
+                //   child: Text(
+                //     "",
+                //     style: TextStyle(
+                //         color: Colors.white,
+                //         fontSize: 40,
+                //         fontWeight: FontWeight.w900,
+                //         height: 1),
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -134,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('assets/image/splash.png'),
-                        fit: BoxFit.cover)),
+                        fit: BoxFit.fitWidth)),
               ),
               Positioned(
                 bottom: 90,
@@ -147,9 +148,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     child: Container(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                          EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                       decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: Colors.white70,
                         borderRadius: BorderRadius.all(Radius.circular(40)),
                       ),
                       child: Text(
